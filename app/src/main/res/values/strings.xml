@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Numpuz</string>
+    <string name="settings">Pengaturan</string>
+    <string name="help">Bantuan</string>
+    <string name="tim">Tim</string>
+    <string name="new_game">Permainan baru</string>
+    <string-array name="size_options">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+</resources>
