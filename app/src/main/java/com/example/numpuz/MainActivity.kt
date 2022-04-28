@@ -1,5 +1,6 @@
 package com.example.numpuz
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.ContentValues
 import android.content.Intent
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     var id=0
     lateinit var username:String
 
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -40,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         lineBorder = findViewById(R.id.lineBorder)
         usernameEdit = findViewById(R.id.username)
         start = findViewById(R.id.Start)
-        moves.setTextColor(Color.RED)
+//        moves.setTextColor(R.color.text_color)
         moves.textSize = 22f
 
         mainView.setVisibility(View.GONE)
@@ -134,6 +136,7 @@ class MainActivity : AppCompatActivity() {
             {
                 android.app.AlertDialog.Builder(this)
                     .setTitle("Permainan Baru")
+                    .setIcon(R.drawable.ic_warning)
                     .setMessage("Apakah anda yakin untuk memulai permainan baru?")
                     .setPositiveButton(
                         "Ya"
@@ -150,7 +153,6 @@ class MainActivity : AppCompatActivity() {
                     .show()
             }
             R.id.action_leaderboard -> {
-                Toast.makeText(this,"to Leaderboard", Toast.LENGTH_SHORT).show()
                 var intent = Intent(this, LeaderboardActivity::class.java)
                 startActivity(intent)
             }
@@ -158,7 +160,7 @@ class MainActivity : AppCompatActivity() {
                 android.app.AlertDialog.Builder(this)
                     .setTitle("Petunjuk")
                     .setMessage(
-                        "Tujuan dari permainan ini adalah untuk menempatkan ubin angka secara berurutan dengan cara menggeser ubin pada ruang yang kosong."
+                        "Tenempatkan ubin angka secara berurutan dengan cara menggeser ubin pada ruang yang kosong."
                     )
                     .setPositiveButton(
                         "Mengerti"

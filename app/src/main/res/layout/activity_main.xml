@@ -2,20 +2,27 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     <LinearLayout
+
         android:id="@+id/startView"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="15dp"
+        android:layout_margin="30dp"
+        android:background="@drawable/loign_shape"
+        android:layout_width="300dp"
+        android:layout_height="170dp"
         android:layout_centerInParent="true"
         android:orientation="vertical">
 
         <EditText
             android:id="@+id/username"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+
             android:hint="Nama Pemain"
             android:inputType="textCapSentences" />
 
