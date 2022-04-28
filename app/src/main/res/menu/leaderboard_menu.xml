@@ -3,9 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_return"
-        android:title="kembali"
+        android:id="@+id/action_delete"
+        android:title="Delete"
         android:orderInCategory="100"
+        android:icon="@drawable/ic_delete"
+        app:showAsAction="always"/>
+    />
+    <item
+        android:id="@+id/action_return"
+        android:title="Kembali"
+        android:orderInCategory="200"
         app:showAsAction="always"/>
     />
 </menu>

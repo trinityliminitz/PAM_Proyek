@@ -10,14 +10,13 @@ class DBAdapter {
 
     private val dbName = "dbNumpuz"
     private val dbTable = "Leaderboard"
-    private val colId = "Id"
     private val colNamaPemain = "NamaPemain"
     private val colLevelPermainan = "LevelPermainan"
     private val colLangkahPemain = "LangkahPemain"
     private val dbVersion = 1
 
     private val CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS " +
-            dbTable + " (" + colId + " " + "INTEGER PRIMARY KEY," + colNamaPemain + " TEXT, " +
+            dbTable + " ("+ "INTEGER PRIMARY KEY," + colNamaPemain + " TEXT, " +
             colLevelPermainan + " INTEGER, " + colLangkahPemain + " INTEGER);"
     private var db: SQLiteDatabase? = null
 
@@ -40,8 +39,13 @@ class DBAdapter {
         return count
     }
 
-    fun delete(selection: String, selectionArgs: Array<String>):Int{
-        val count = db!!.delete(dbTable, selection, selectionArgs)
+//    fun delete(selection: String, selectionArgs: Array<String>):Int{
+//        val count = db!!.delete(dbTable, selection, selectionArgs)
+//        return count
+//    }
+
+    fun delete():Int{
+        val count = db!!.delete(dbTable, null,null)
         return count
     }
 

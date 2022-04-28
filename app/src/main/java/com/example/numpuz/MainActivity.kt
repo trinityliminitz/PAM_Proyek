@@ -1,6 +1,7 @@
 package com.example.numpuz
 
 import android.app.AlertDialog
+import android.content.ContentValues
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -9,10 +10,10 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.textfield.TextInputEditText
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,12 +24,12 @@ class MainActivity : AppCompatActivity() {
     private  var boardView:BoardView?=null
     private lateinit var moves: TextView
     private lateinit var lineBorder: View
-//    private lateinit var usernameEdit: TextInputEditText
+    private lateinit var usernameEdit: EditText
     private lateinit var start: Button
     private var boardSize = 2
 
-//    var id=0
-//    lateinit var username:String
+    var id=0
+    lateinit var username:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         startView = findViewById(R.id.startView)
         moves = findViewById(R.id.moves)
         lineBorder = findViewById(R.id.lineBorder)
-//        usernameEdit = findViewById(R.id.username)
+        usernameEdit = findViewById(R.id.username)
         start = findViewById(R.id.Start)
         moves.setTextColor(Color.RED)
         moves.textSize = 22f
@@ -45,11 +46,13 @@ class MainActivity : AppCompatActivity() {
         mainView.setVisibility(View.GONE)
         getSupportActionBar()?.hide();
 
+
+
         start.setOnClickListener(){
-//            if (usernameEdit.equals(""))
-//                username = "Misterius"
-//            else
-//                username = usernameEdit.toString()
+            if (usernameEdit.text.toString()=="")
+                username = "Misterius"
+            else
+                username = usernameEdit.text.toString()
             startView.setVisibility(View.GONE)
             mainView.setVisibility(View.VISIBLE)
             getSupportActionBar()?.show();
@@ -71,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         boardView = BoardView(this,board!!)
         mainView!!.addView(boardView)
         moves.text = "Jumlah pergerakan : 0"
-        Toast.makeText(this,"Selamat bermain!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,"Selamat bermain, ${username}!", Toast.LENGTH_SHORT).show()
     }
 
     fun changeSize(newSize: Int) {
@@ -87,11 +90,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun solved(numOfMoves: Int) {
+            var dbAdapter = DBAdapter(this@MainActivity)
+            var values = ContentValues()
+            values.put("NamaPemain", username)
+            values.put("LevelPermainan", boardSize-1)
+            values.put("LangkahPemain", numOfMoves)
+            dbAdapter.insert(values)
 
             moves.text = "Selesai dalam ${numOfMoves} langkah"
-
             AlertDialog.Builder(this@MainActivity)
-                .setTitle("Anda menang..!!")
+                .setTitle("Selamat, ${username}!!")
                 .setIcon(R.drawable.ic_celebration)
                 .setMessage("Anda menang dalam $numOfMoves langkah. \nMulai permainan baru?")
                 .setPositiveButton("Ya"){
@@ -107,11 +115,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 .create()
                 .show()
-
         }
-
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

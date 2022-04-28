@@ -1,7 +1,9 @@
 package com.example.numpuz
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,10 +11,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class LeaderboardActivity : AppCompatActivity() {
@@ -46,12 +48,10 @@ class LeaderboardActivity : AppCompatActivity() {
         listLeaderboard.clear()
         if (cursor.moveToFirst()){
             do {
-                val id = cursor.getInt(cursor.getColumnIndex("Id"))
-                val nama = cursor.getString(cursor.getColumnIndex("Nama"))
-                val level = cursor.getInt(cursor.getColumnIndex("Level"))
-                val langkah = cursor.getInt(cursor.getColumnIndex("Langkah"))
-
-                listLeaderboard.add(Leaderboard(id, nama, level, langkah))
+                val nama = cursor.getString(cursor.getColumnIndex("NamaPemain"))
+                val level = "Level permainan : " + cursor.getInt(cursor.getColumnIndex("LevelPermainan"))
+                val langkah = "Jumlah langkah : " + cursor.getInt(cursor.getColumnIndex("LangkahPemain"))
+                listLeaderboard.add(Leaderboard(nama, level, langkah))
             }while (cursor.moveToNext())
         }
 
@@ -108,7 +108,6 @@ class LeaderboardActivity : AppCompatActivity() {
 
     private fun updateLeaderboard(leaderboard: Leaderboard) {
         var  intent = Intent(this, LeaderboardActivity::class.java)
-        intent.putExtra("MainActId", leaderboard.id)
         intent.putExtra("MainActNama", leaderboard.namaPemain)
         intent.putExtra("MainActLevel", leaderboard.levelPermainan)
         intent.putExtra("MainActLangkah", leaderboard.langkahPemain)
@@ -133,6 +132,24 @@ class LeaderboardActivity : AppCompatActivity() {
             R.id.action_return -> {
                 var intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+            }
+            R.id.action_delete ->{
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Hapus rekaman")
+                builder.setMessage("Apakah anda yakin untuk menghapus semua rekaman?")
+
+                builder.setPositiveButton("Ya") { dialog: DialogInterface?, which: Int ->
+                    var dbAdapter = DBAdapter(this)
+                    dbAdapter.delete()
+                    Toast.makeText(this, "Berhasil dihapus", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+                builder.setNegativeButton("Kembali"){ dialog: DialogInterface?, which: Int ->  }
+
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+                return true
             }
         }
         return super.onOptionsItemSelected(item)

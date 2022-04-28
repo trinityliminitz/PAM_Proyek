@@ -12,26 +12,26 @@
     <item
         android:title="@string/settings"
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:orderInCategory="200"
         app:showAsAction="always"
         android:icon="@drawable/ic_settings"
         />
     <item
         android:title="@string/help"
         android:id="@+id/action_help"
-        android:orderInCategory="100"
+        android:orderInCategory="300"
         app:showAsAction="never"
         />
     <item
         android:title="@string/leaderboard"
         android:id="@+id/action_leaderboard"
-        android:orderInCategory="100"
+        android:orderInCategory="400"
         app:showAsAction="never"
         />
     <item
         android:title="@string/tim"
         android:id="@+id/teammates"
-        android:orderInCategory="100"
+        android:orderInCategory="500"
         app:showAsAction="never"
         />
 </menu>
