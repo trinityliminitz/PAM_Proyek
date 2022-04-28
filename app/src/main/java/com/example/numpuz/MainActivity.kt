@@ -160,7 +160,7 @@ class MainActivity : AppCompatActivity() {
                 android.app.AlertDialog.Builder(this)
                     .setTitle("Petunjuk")
                     .setMessage(
-                        "Tenempatkan ubin angka secara berurutan dengan cara menggeser ubin pada ruang yang kosong."
+                        "Tempatkan ubin angka secara berurutan dengan cara menggeser ubin pada ruang yang kosong."
                     )
                     .setPositiveButton(
                         "Mengerti"
