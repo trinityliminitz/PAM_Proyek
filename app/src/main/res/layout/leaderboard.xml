@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:weightSum="10">
+    <TextView
+        android:id="@+id/tvNamaPemain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama Pemain"
+        android:textStyle="bold"
+        android:textSize="18sp"/>
+    <TextView
+        android:id="@+id/tvLevelPermainan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Level permainan : 0"
+        android:textSize="16sp"/>
+    <TextView
+        android:id="@+id/tvLangkahPemain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jumlah langkah : 0"
+        android:textSize="16sp"/>
+</LinearLayout>

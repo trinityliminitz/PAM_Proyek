@@ -1,25 +1,29 @@
 package com.example.numpuz
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import androidx.appcompat.app.AlertDialog
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
+
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var mainView:ViewGroup
+    private lateinit var mainView: ViewGroup
     private lateinit var startView:ViewGroup
     private  var board:Board?=null
     private  var boardView:BoardView?=null
     private lateinit var moves: TextView
     private lateinit var lineBorder: View
-    private lateinit var usernameEdit: TextInputEditText
+//    private lateinit var usernameEdit: TextInputEditText
     private lateinit var start: Button
     private var boardSize = 2
 
@@ -33,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         startView = findViewById(R.id.startView)
         moves = findViewById(R.id.moves)
         lineBorder = findViewById(R.id.lineBorder)
-        usernameEdit = findViewById(R.id.username)
+//        usernameEdit = findViewById(R.id.username)
         start = findViewById(R.id.Start)
         moves.setTextColor(Color.RED)
         moves.textSize = 22f
@@ -140,6 +144,11 @@ class MainActivity : AppCompatActivity() {
                     }.setIcon(R.drawable.ic_new_game)
                     .show()
             }
+            R.id.action_leaderboard -> {
+                Toast.makeText(this,"to Leaderboard", Toast.LENGTH_SHORT).show()
+                var intent = Intent(this, LeaderboardActivity::class.java)
+                startActivity(intent)
+            }
             R.id.action_help -> {
                 android.app.AlertDialog.Builder(this)
                     .setTitle("Petunjuk")
@@ -154,7 +163,7 @@ class MainActivity : AppCompatActivity() {
                 android.app.AlertDialog.Builder(this)
                     .setTitle("Anggota Tim")
                     .setMessage(
-                        "11S19016 | Timothy Sipahutar\n11S19019 | Edrei Siregar\n11S19040 | Judah Sitorus\n11S19044 | Kevin Sihaloho\n11S19047 | Andreas Pakpahan"
+                        "11S19016 | Timothy Sipahutar\n11S19019 | Edrei Siregar\n11S19027 | Darel Pinem\n11S19037 | Rio Simanjuntak\n11S19040 | Judah Sitorus\n11S19044 | Kevin Sihaloho\n11S19047 | Andreas Pakpahan"
                     )
                     .setPositiveButton(
                         "Terima kasih"
