@@ -10,4 +10,4 @@ Disusun Oleh:
 - Kevin Sihaloho 11S19044
 - Andreas Pakpahan 11S19047
 
-> [Link Website](https://youtu.be/jiZKmryrRLQ)
+> [Link Video - Demo](https://youtu.be/jiZKmryrRLQ)
